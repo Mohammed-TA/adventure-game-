@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Adventure Game</title>
+  <style>
+    body { font-family: Arial, sans-serif; }
+    #game { margin: 20px; }
+    .hidden { display: none; }
+  </style>
+</head>
+<body>
+  <div id="game">
+    <p id="story">You are in a dark forest. You see a path leading north and another one leading east. Which way do you go?</p>
+    <button onclick="goNorth()">Go North</button>
+    <button onclick="goEast()">Go East</button>
+  </div>
+  <script>
+    function goNorth() {
+      document.getElementById('story').innerText = 'You encounter a wild animal! Do you fight or run away?';
+      setChoices('Fight', 'Run Away', fight, runAway);
+    }
+
+    function goEast() {
+      document.getElementById('story').innerText = 'You find a hidden treasure chest! Do you open it or leave it?';
+      setChoices('Open', 'Leave', openChest, leaveChest);
+    }
+
+    function fight() {
+      document.getElementById('story').innerText = 'You bravely fight the animal and win!';
+      hideChoices();
+    }
+
+    function runAway() {
+      document.getElementById('story').innerText = 'You run away safely.';
+      hideChoices();
+    }
+
+    function openChest() {
+      document.getElementById('story').innerText = 'You open the chest and find gold coins!';
+      hideChoices();
+    }
+
+    function leaveChest() {
+      document.getElementById('story').innerText = 'You leave the chest and continue your journey.';
+      hideChoices();
+    }
+
+    function setChoices(choice1Text, choice2Text, choice1Action, choice2Action) {
+      const buttons = document.getElementById('game').getElementsByTagName('button');
+      buttons[0].innerText = choice1Text;
+      buttons[1].innerText = choice2Text;
+      buttons[0].onclick = choice1Action;
+      buttons[1].onclick = choice2Action;
+    }
+
+    function hideChoices() {
+      const buttons = document.getElementById('game').getElementsByTagName('button');
+      for (let i = 0; i < buttons.length; i++) {
+        buttons[i].classList.add('hidden');
+      }
+    }
+  </script>
+</body>
+</html>
